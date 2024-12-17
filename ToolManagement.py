@@ -16,6 +16,7 @@ import sys
 def get_user_data():
     """
     Locate 'password_database.db' in the script's directory (project root).
+    Fetch user data from the database.
     """
     # Get the directory where the script is located
     project_dir = os.path.dirname(os.path.abspath(__file__))
@@ -30,6 +31,17 @@ def get_user_data():
     # Connect to the database
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
+
+    # Query to fetch username and password
+    cur.execute('SELECT username, password FROM users')  # Adjust 'users' to your actual table name
+    users = cur.fetchall()
+
+    # Close the connection
+    conn.close()
+
+    # Return a dictionary with username as the key and password as the value
+    return {user[0]: user[1] for user in users}
+    
 
 
 # Initialize the cookies manager
