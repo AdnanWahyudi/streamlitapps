@@ -33,7 +33,7 @@ def get_user_data():
     cur = conn.cursor()
 
     # Query to fetch username and password
-    cur.execute('SELECT username, password FROM users')  # Adjust 'users' to your actual table name
+    cur.execute('SELECT username, password FROM table_name')  # Adjust 'users' to your actual table name
     users = cur.fetchall()
 
     # Close the connection
